@@ -77,9 +77,9 @@ possible_duplicate_trace_step(because(5,rule_desc('multi-hop access',0.5),netAcc
 
 possible_duplicate_trace_step(because(17,rule_desc('NFS shell',0.80000000000000004),accessFile(fileServer,write,'/export'),[hacl(workStation,fileServer,nfsProtocol,nfsPort),nfsExportInfo(fileServer,'/export',write,workStation),execCode(workStation,root)])).
 
-possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h7822),[canAccessFile(fileServer,root,write,_h7822),execCode(fileServer,root)])).
+possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h8062),[canAccessFile(fileServer,root,write,_h8062),execCode(fileServer,root)])).
 
-possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h7822),[canAccessFile(fileServer,root,write,_h7822),execCode(fileServer,root)])).
+possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h8062),[canAccessFile(fileServer,root,write,_h8062),execCode(fileServer,root)])).
 
 possible_duplicate_trace_step(because(5,rule_desc('multi-hop access',0.5),netAccess(webServer,tcp,80),[hacl(fileServer,webServer,tcp,80),advances(fileServer,webServer),execCode(fileServer,root)])).
 
@@ -91,15 +91,15 @@ possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access
 
 possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,'/export'),[canAccessFile(fileServer,root,write,'/export'),execCode(fileServer,root)])).
 
-possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h8013),[canAccessFile(fileServer,root,write,_h8013),execCode(fileServer,root)])).
+possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h8253),[canAccessFile(fileServer,root,write,_h8253),execCode(fileServer,root)])).
 
-possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h8013),[canAccessFile(fileServer,root,write,_h8013),execCode(fileServer,root)])).
+possible_duplicate_trace_step(because(10,rule_desc('execCode implies file access',1.0),accessFile(fileServer,write,_h8253),[canAccessFile(fileServer,root,write,_h8253),execCode(fileServer,root)])).
 
 possible_duplicate_trace_step(because(16,rule_desc('NFS semantics',1),accessFile(workStation,write,'/usr/local/share'),[accessFile(fileServer,write,'/export'),nfsMounted(workStation,'/usr/local/share',fileServer,'/export',read)])).
 
-possible_duplicate_trace_step(because(4,rule_desc('Trojan horse installation',0.80000000000000004),execCode(fileServer,root),[accessFile(fileServer,write,_h8013)])).
+possible_duplicate_trace_step(because(4,rule_desc('Trojan horse installation',0.80000000000000004),execCode(fileServer,root),[accessFile(fileServer,write,_h8253)])).
 
-possible_duplicate_trace_step(because(4,rule_desc('Trojan horse installation',0.80000000000000004),execCode(fileServer,root),[accessFile(fileServer,write,_h7822)])).
+possible_duplicate_trace_step(because(4,rule_desc('Trojan horse installation',0.80000000000000004),execCode(fileServer,root),[accessFile(fileServer,write,_h8062)])).
 
 possible_duplicate_trace_step(because(16,rule_desc('NFS semantics',1),accessFile(workStation,write,'/usr/local/share'),[accessFile(fileServer,write,'/export'),nfsMounted(workStation,'/usr/local/share',fileServer,'/export',read)])).
 
