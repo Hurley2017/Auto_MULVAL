@@ -1,0 +1,32 @@
+[xsb_configuration loaded]
+[sysinitrc loaded]
+[xsbbrat loaded]
+
+XSB Version 5.0.0 (Green Tea) of May 15, 2022
+[x86_64-pc-linux-gnu 64 bits; mode: optimal; engine: slg-wam; scheduling: local]
+[Build date: 2024-01-08]
+
+| ?- [Compiling ./run]
+[run compiled, cpu time used: 0.031 seconds]
+[run loaded]
+[libmulval loaded]
+[translate loaded, cpu time used: 0.001 seconds]
+[attack_trace loaded]
+[auxiliary loaded]
+[./running_rules.P dynamically loaded, cpu time used: 0.055 seconds]
+[./input.P dynamically loaded, cpu time used: 0.011 seconds]
+[/home/tusher/mulval/src/analyzer/advances_notrim.P dynamically loaded, cpu time used: 0.001 seconds]
+@@@@@@@@@@@@@@Done transforming in mode dynamic_decl
+
+[./dynamic_decl.gen dynamically loaded, cpu time used: 0.014 seconds]
+@@@@@@@@@@@@@@Done transforming in mode completeTrace2
+
+@@@@@@@@@@@@@@Done transforming in mode completeTrace2
+
+@@@@@@@@@@@@@@Done transforming in mode stripExplanation
+
+Running attack simulation...
+
+yes
+| ?- 
+End XSB (cputime 0.17 secs, elapsetime 0.18 secs)

@@ -1,0 +1,159 @@
+<1>||--execCode(dmz_host_10,root)
+   (2) RULE 1 : local exploit
+      [3]-vulExists(dmz_host_10,dmz_host_10_localVul_0,localApplication,localExploit,privEscalation)
+      execCode(dmz_host_10,root)==><1>
+   (4) RULE 1 : local exploit
+      [3]-vulExists(dmz_host_10,dmz_host_10_localVul_0,localApplication,localExploit,privEscalation)
+      <5>||--execCode(dmz_host_10,user)
+         (6) RULE 0 : When a principal is compromised any machine he has an account on will also be compromised
+            <7>||--canAccessHost(dmz_host_10)
+               (8) RULE 8 : Access a host through executing code on the machine
+                  execCode(dmz_host_10,root)==><1>
+               (9) RULE 8 : Access a host through executing code on the machine
+                  execCode(dmz_host_10,user)==><5>
+            [10]-hasAccount(dmz_host_10_victim,dmz_host_10,user)
+            <11>||--principalCompromised(dmz_host_10_victim)
+               (12) RULE 11 : password sniffing
+                  execCode(dmz_host_10,root)==><1>
+                  [10]-hasAccount(dmz_host_10_victim,dmz_host_10,user)
+               (13) RULE 12 : password sniffing
+                  execCode(dmz_host_10,user)==><5>
+                  [10]-hasAccount(dmz_host_10_victim,dmz_host_10,user)
+         (14) RULE 2 : remote exploit of a server program
+            <15>||--netAccess(dmz_host_10,httpProtocol,httpPort)
+               (16) RULE 5 : multi-hop access
+                  [17]-hacl(dmz_host_10,dmz_host_10,httpProtocol,httpPort)
+                  execCode(dmz_host_10,root)==><1>
+               (18) RULE 5 : multi-hop access
+                  [17]-hacl(dmz_host_10,dmz_host_10,httpProtocol,httpPort)
+                  execCode(dmz_host_10,user)==><5>
+               (19) RULE 6 : direct network access
+                  [20]-hacl(internet,dmz_host_10,httpProtocol,httpPort)
+                  [21]-attackerLocated(internet)
+            [22]-networkServiceInfo(dmz_host_10,serverApplication,httpProtocol,httpPort,user)
+            [23]-vulExists(dmz_host_10,dmz_host_10_remoteVul_0,serverApplication,remoteExploit,privEscalation)
+         (24) RULE 2 : remote exploit of a server program
+            netAccess(dmz_host_10,httpProtocol,httpPort)==><15>
+            [22]-networkServiceInfo(dmz_host_10,serverApplication,httpProtocol,httpPort,user)
+            [25]-vulExists(dmz_host_10,dmz_host_10_remoteVul_1,serverApplication,remoteExploit,privEscalation)
+         (26) RULE 2 : remote exploit of a server program
+            netAccess(dmz_host_10,httpProtocol,httpPort)==><15>
+            [22]-networkServiceInfo(dmz_host_10,serverApplication,httpProtocol,httpPort,user)
+            [27]-vulExists(dmz_host_10,dmz_host_10_remoteVul_2,serverApplication,remoteExploit,privEscalation)
+         (28) RULE 2 : remote exploit of a server program
+            netAccess(dmz_host_10,httpProtocol,httpPort)==><15>
+            [22]-networkServiceInfo(dmz_host_10,serverApplication,httpProtocol,httpPort,user)
+            [29]-vulExists(dmz_host_10,dmz_host_10_remoteVul_3,serverApplication,remoteExploit,privEscalation)
+
+execCode(dmz_host_10,user)==><5>
+
+<30>||--execCode(fileServers_host_10,user)
+   (31) RULE 0 : When a principal is compromised any machine he has an account on will also be compromised
+      <32>|--canAccessHost(fileServers_host_10)
+         (33) RULE 8 : Access a host through executing code on the machine
+            execCode(fileServers_host_10,user)==><30>
+      [34]-hasAccount(fileServers_host_10_victim,fileServers_host_10,user)
+      <35>|--principalCompromised(fileServers_host_10_victim)
+         (36) RULE 12 : password sniffing
+            execCode(fileServers_host_10,user)==><30>
+            [34]-hasAccount(fileServers_host_10_victim,fileServers_host_10,user)
+   (37) RULE 2 : remote exploit of a server program
+      <38>||--netAccess(fileServers_host_10,httpProtocol,httpPort)
+         (39) RULE 5 : multi-hop access
+            [40]-hacl(fileServers_host_10,fileServers_host_10,httpProtocol,httpPort)
+            execCode(fileServers_host_10,user)==><30>
+         (41) RULE 5 : multi-hop access
+            [42]-hacl(fileServers_host_9,fileServers_host_10,httpProtocol,httpPort)
+            <43>||--execCode(fileServers_host_9,user)
+               (44) RULE 0 : When a principal is compromised any machine he has an account on will also be compromised
+                  <45>|--canAccessHost(fileServers_host_9)
+                     (46) RULE 8 : Access a host through executing code on the machine
+                        execCode(fileServers_host_9,user)==><43>
+                  [47]-hasAccount(fileServers_host_9_victim,fileServers_host_9,user)
+                  <48>|--principalCompromised(fileServers_host_9_victim)
+                     (49) RULE 12 : password sniffing
+                        execCode(fileServers_host_9,user)==><43>
+                        [47]-hasAccount(fileServers_host_9_victim,fileServers_host_9,user)
+               (50) RULE 2 : remote exploit of a server program
+                  <51>||--netAccess(fileServers_host_9,httpProtocol,httpPort)
+                     (52) RULE 5 : multi-hop access
+                        [53]-hacl(fileServers_host_10,fileServers_host_9,httpProtocol,httpPort)
+                        execCode(fileServers_host_10,user)==><30>
+                     (54) RULE 5 : multi-hop access
+                        [55]-hacl(fileServers_host_9,fileServers_host_9,httpProtocol,httpPort)
+                        execCode(fileServers_host_9,user)==><43>
+                  [56]-networkServiceInfo(fileServers_host_9,serverApplication,httpProtocol,httpPort,user)
+                  [57]-vulExists(fileServers_host_9,fileServers_host_9_remoteVul_0,serverApplication,remoteExploit,privEscalation)
+               (58) RULE 2 : remote exploit of a server program
+                  netAccess(fileServers_host_9,httpProtocol,httpPort)==><51>
+                  [56]-networkServiceInfo(fileServers_host_9,serverApplication,httpProtocol,httpPort,user)
+                  [59]-vulExists(fileServers_host_9,fileServers_host_9_remoteVul_1,serverApplication,remoteExploit,privEscalation)
+         (60) RULE 5 : multi-hop access
+            [61]-hacl(workStation_host_10,fileServers_host_10,httpProtocol,httpPort)
+            <62>||--execCode(workStation_host_10,root)
+               (63) RULE 1 : local exploit
+                  [64]-vulExists(workStation_host_10,workStation_host_10_localVul_0,localApplication,localExploit,privEscalation)
+                  execCode(workStation_host_10,root)==><62>
+               (65) RULE 1 : local exploit
+                  [64]-vulExists(workStation_host_10,workStation_host_10_localVul_0,localApplication,localExploit,privEscalation)
+                  <66>||--execCode(workStation_host_10,user)
+                     (67) RULE 0 : When a principal is compromised any machine he has an account on will also be compromised
+                        <68>||--canAccessHost(workStation_host_10)
+                           (69) RULE 8 : Access a host through executing code on the machine
+                              execCode(workStation_host_10,root)==><62>
+                           (70) RULE 8 : Access a host through executing code on the machine
+                              execCode(workStation_host_10,user)==><66>
+                        [71]-hasAccount(workStation_host_10_victim,workStation_host_10,user)
+                        <72>||--principalCompromised(workStation_host_10_victim)
+                           (73) RULE 11 : password sniffing
+                              execCode(workStation_host_10,root)==><62>
+                              [71]-hasAccount(workStation_host_10_victim,workStation_host_10,user)
+                           (74) RULE 12 : password sniffing
+                              execCode(workStation_host_10,user)==><66>
+                              [71]-hasAccount(workStation_host_10_victim,workStation_host_10,user)
+                     (75) RULE 2 : remote exploit of a server program
+                        <76>||--netAccess(workStation_host_10,httpProtocol,httpPort)
+                           (77) RULE 5 : multi-hop access
+                              [78]-hacl(fileServers_host_10,workStation_host_10,httpProtocol,httpPort)
+                              execCode(fileServers_host_10,user)==><30>
+                           (79) RULE 5 : multi-hop access
+                              [80]-hacl(workStation_host_10,workStation_host_10,httpProtocol,httpPort)
+                              execCode(workStation_host_10,root)==><62>
+                           (81) RULE 5 : multi-hop access
+                              [80]-hacl(workStation_host_10,workStation_host_10,httpProtocol,httpPort)
+                              execCode(workStation_host_10,user)==><66>
+                        [82]-networkServiceInfo(workStation_host_10,serverApplication,httpProtocol,httpPort,user)
+                        [83]-vulExists(workStation_host_10,workStation_host_10_remoteVul_0,serverApplication,remoteExploit,privEscalation)
+                     (84) RULE 2 : remote exploit of a server program
+                        netAccess(workStation_host_10,httpProtocol,httpPort)==><76>
+                        [82]-networkServiceInfo(workStation_host_10,serverApplication,httpProtocol,httpPort,user)
+                        [85]-vulExists(workStation_host_10,workStation_host_10_remoteVul_1,serverApplication,remoteExploit,privEscalation)
+               (86) RULE 1 : local exploit
+                  [87]-vulExists(workStation_host_10,workStation_host_10_localVul_1,localApplication,localExploit,privEscalation)
+                  execCode(workStation_host_10,root)==><62>
+               (88) RULE 1 : local exploit
+                  [87]-vulExists(workStation_host_10,workStation_host_10_localVul_1,localApplication,localExploit,privEscalation)
+                  execCode(workStation_host_10,user)==><66>
+         (89) RULE 5 : multi-hop access
+            [61]-hacl(workStation_host_10,fileServers_host_10,httpProtocol,httpPort)
+            execCode(workStation_host_10,user)==><66>
+         (90) RULE 6 : direct network access
+            [91]-hacl(internet,fileServers_host_10,httpProtocol,httpPort)
+            [21]-attackerLocated(internet)
+      [92]-networkServiceInfo(fileServers_host_10,serverApplication,httpProtocol,httpPort,user)
+      [93]-vulExists(fileServers_host_10,fileServers_host_10_remoteVul_0,serverApplication,remoteExploit,privEscalation)
+   (94) RULE 2 : remote exploit of a server program
+      netAccess(fileServers_host_10,httpProtocol,httpPort)==><38>
+      [92]-networkServiceInfo(fileServers_host_10,serverApplication,httpProtocol,httpPort,user)
+      [95]-vulExists(fileServers_host_10,fileServers_host_10_remoteVul_1,serverApplication,remoteExploit,privEscalation)
+   (96) RULE 2 : remote exploit of a server program
+      netAccess(fileServers_host_10,httpProtocol,httpPort)==><38>
+      [92]-networkServiceInfo(fileServers_host_10,serverApplication,httpProtocol,httpPort,user)
+      [97]-vulExists(fileServers_host_10,fileServers_host_10_remoteVul_2,serverApplication,remoteExploit,privEscalation)
+
+execCode(fileServers_host_9,user)==><43>
+
+execCode(workStation_host_10,root)==><62>
+
+execCode(workStation_host_10,user)==><66>
+
